@@ -24,9 +24,14 @@ def get_videos_per_page(channel_id, published_after, page_token=None):
 def download_videos_from_page(videos_per_page, target_folder_for_save):
     size = len(videos_per_page["items"])
     for itemId in range(0, size):
-        video_name = videos_per_page["items"][itemId]['snippet']['title']
-        youtube_link = "http://youtube.com/watch?v=" + videos_per_page["items"][itemId]["id"]["videoId"]
-        download_video(youtube_link, video_name, target_folder_for_save)
+        if youtube_video_is_single_track(itemId, videos_per_page):
+            youtube_link = "http://youtube.com/watch?v=" + videos_per_page["items"][itemId]["id"]["videoId"]
+            video_name = videos_per_page["items"][itemId]['snippet']['title']
+            download_video(youtube_link, video_name, target_folder_for_save)
+
+
+def youtube_video_is_single_track(itemId, videos_per_page):
+    return "videoId" in videos_per_page["items"][itemId]["id"]
 
 
 def download_video(youtube_link, video_name, target_folder_for_save):
