@@ -12,7 +12,7 @@ def download_mp3s_from_channel_after_date(music_info):
     next_page_token = get_next_page_token(videos_per_page)
     while next_page_token:
         download_videos_from_page(videos_per_page, music_info[1])
-        videos_per_page = get_videos_per_page(music_info, published_after, next_page_token)
+        videos_per_page = get_videos_per_page(music_info[0], published_after, next_page_token)
         next_page_token = get_next_page_token(videos_per_page)
 
 
