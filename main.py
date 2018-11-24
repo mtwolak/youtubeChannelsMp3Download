@@ -34,7 +34,7 @@ def download_video(youtube_link, video_name, target_folder_for_save):
         os.makedirs(target_folder_for_save)
     if not os.path.isfile(target_folder_for_save + "/" + video_name + ".mp3"):
         subprocess.call("youtube-dl " + youtube_link, shell=True)
-        subprocess.call("mv *.mp3 " + target_folder_for_save + "/", shell=True)
+        subprocess.call("mv *.mp3 '" + target_folder_for_save + "'/", shell=True)
 
 
 def get_next_page_token(videos_per_page):
